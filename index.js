@@ -1,10 +1,17 @@
 // Import npm packages
 const inquirer = require('inquirer');
 const fs = require('fs');
-const ??? = require('???');
+
+const Employee = require('./lib/Employee');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
 
 // Import classes
 
+// WHEN I start the application
+// THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+// WHEN I enter the team manager’s name, employee ID, email address, and office number
 
 inquirer
     .prompt([
@@ -35,14 +42,6 @@ inquirer
             type: 'input',
             name: 'phone-manager',
             message: 'What is the managers office number?'
-        },
-
-
-        {
-            type: 'list',
-            name: 'license',
-            message: 'Choose your license for your project',
-            choices: ['MIT', 'BSD3', 'LGPL', 'Apache', 'Other', 'None']
         },
     ])
 
