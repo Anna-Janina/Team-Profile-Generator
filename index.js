@@ -1,26 +1,33 @@
 // Import npm packages
 const inquirer = require('inquirer');
 const fs = require('fs');
+const path = require('path');
 
-const Employee = require('./lib/Employee');
-const Engineer = require('./lib/Engineer');
-const Intern = require('./lib/Intern');
+// const Employee = require('./lib/Employee');
+// const Engineer = require('./lib/Engineer');
+// const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
-// Import classes
+const dist_directory = path.resolve(__dirname, 'dist')
+const dist_path = path.join(dist_directory, 'team.html')
 
+const renderFunc = require('./src/page.js')
+const teamMembers = []
 // WHEN I start the application
 // THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
 // WHEN I enter the team manager’s name, employee ID, email address, and office number
 
-inquirer
+function app() {
+
+    function createManagerFromRes() {
+        inquirer
     .prompt([
-        {
-            type: 'list',
-            name: 'team-member',
-            message: 'Select your job description.',
-            choices: ['Manager', 'Engineer', 'Intern'],
-        },
+        // {
+        //     type: 'list',
+        //     name: 'team-member',
+        //     message: 'Select your job description.',
+        //     choices: ['Manager', 'Engineer', 'Intern'],
+        // },
 
 
         {
@@ -44,6 +51,46 @@ inquirer
             message: 'What is the managers office number?'
         },
     ])
+    .then((answers) => {
+        const manager = new Manager(
+            answers.name-manager
+            // all other responses like above
+        )
+        teamMembers.push(manager)
+        createTeam()
+    })
+    }
+
+    function createTeam() {
+        inquirer.prompt([
+            {
+                type: 'list', 
+                name: 'memberchoice',
+                message: 'which type of employee are you adding?',
+                choices: ['Engineer', 'Intern', "I made a mistake, go back"],
+            }
+        ])
+        .then((choice) => {
+            if (choice.memberchoice === 'Engineer') {
+                // run add engineer func
+            }
+            else if (choice.memberchoice === 'Intern') {
+                // run add intern func
+            } else {
+                build()
+            }
+        })
+    }
+    function build() {
+        if (!fs.existsSync(dist_directory)) {
+            fs.mkdirSync(dist_directory)
+        }
+        fs.writeFileSync(dist_path, renderFunc(teamMembers), 'utf-8')
+    }
+    
+    createManagerFromRes()
+}
+
 
 
 // THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
@@ -55,31 +102,31 @@ inquirer
 // WHEN I select the engineer option
 // THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
 
-inquirer
-    .prompt([
+// inquirer
+//     .prompt([
     
-        {
-            type: 'input',
-            name: 'name-engineer',
-            message: 'What is the engineers name?'
-        },
-        {
-            type: 'input',
-            name: 'id-engineer',
-            message: 'What is the engineers employee ID?'
-        },
-        {
-            type: 'input',
-            name: 'email-engineer',
-            message: 'What is the engineers email?'
-        },
-        {
-            type: 'input',
-            name: 'github-engineer',
-            message: 'What is the engineers github?'
-        },
+//         {
+//             type: 'input',
+//             name: 'name-engineer',
+//             message: 'What is the engineers name?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'id-engineer',
+//             message: 'What is the engineers employee ID?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'email-engineer',
+//             message: 'What is the engineers email?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'github-engineer',
+//             message: 'What is the engineers github?'
+//         },
 
-    ])
+//     ])
 
 
 
@@ -88,38 +135,36 @@ inquirer
 // WHEN I select the intern option
 // THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
 
-inquirer
-    .prompt([
+// inquirer
+//     .prompt([
     
-        {
-            type: 'input',
-            name: 'name-intern',
-            message: 'What is the interns name?'
-        },
-        {
-            type: 'input',
-            name: 'id-intern',
-            message: 'What is the engineers employee ID?'
-        },
-        {
-            type: 'input',
-            name: 'email-intern',
-            message: 'What is the interns email?'
-        },
-        {
-            type: 'input',
-            name: 'school-intern',
-            message: 'What is the interns school?'
-        },
+//         {
+//             type: 'input',
+//             name: 'name-intern',
+//             message: 'What is the interns name?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'id-intern',
+//             message: 'What is the engineers employee ID?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'email-intern',
+//             message: 'What is the interns email?'
+//         },
+//         {
+//             type: 'input',
+//             name: 'school-intern',
+//             message: 'What is the interns school?'
+//         },
 
-    ])
-
-
+//     ])
 
 
 
 
-
+app()
 
 // WHEN I decide to finish building my team
 // THEN I exit the application, and the HTML is generated
