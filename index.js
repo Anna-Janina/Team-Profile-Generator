@@ -3,10 +3,12 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
 
+// Import classes
 const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
+
 
 const dist_directory = path.resolve(__dirname, 'dist')
 const dist_path = path.join(dist_directory, 'team.html')
@@ -19,25 +21,17 @@ const teamMembers = []
 
 function app() {
 
-    function createManagerFromRes() {
+    function addManager() {
         inquirer
-    .prompt([
-        // {
-        //     type: 'list',
-        //     name: 'team-member',
-        //     message: 'Select your job description.',
-        //     choices: ['Manager', 'Engineer', 'Intern'],
-        // },
-
-
-        {
-            type: 'input',
-            name: 'name-manager',
-            message: 'What is the managers name?'
-        },
-        {
-            type: 'input',
-            name: 'id-manager',
+            .prompt([
+                {
+                    type: 'input',
+                    name: 'name-manager',
+                    message: 'What is the managers name?'
+                },
+                {
+                    type: 'input',
+                    name: 'id-manager',
             message: 'What is the managers employee ID?'
         },
         {
@@ -65,16 +59,16 @@ function app() {
         inquirer.prompt([
             {
                 type: 'list', 
-                name: 'memberchoice',
+                name: 'memberChoice',
                 message: 'which type of employee are you adding?',
                 choices: ['Engineer', 'Intern', "I made a mistake, go back"],
             }
         ])
         .then((choice) => {
-            if (choice.memberchoice === 'Engineer') {
+            if (choice.memberChoice === 'Engineer') {
                 // run add engineer func
             }
-            else if (choice.memberchoice === 'Intern') {
+            else if (choice.memberChoice === 'Intern') {
                 // run add intern func
             } else {
                 build()
@@ -88,7 +82,7 @@ function app() {
         fs.writeFileSync(dist_path, renderFunc(teamMembers), 'utf-8')
     }
     
-    createManagerFromRes()
+    addManager()
 }
 
 
