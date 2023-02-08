@@ -18,9 +18,10 @@ Create a command-line application which can take user inputs (name, role, id, em
 # User Story
 As a manager I want to generate a webpage that displays the teams basic information.
 
-https://drive.google.com/file/d/1eMitHFbqD-IVUfJkWLOgmeNQW_3rlYzJ/view
+https://drive.google.com/file/d/1dXmGqH26mjqoCHhamt8bvfgkHr_Mpr_P/view
 
 ## Screenshot
+![alt text](assets/Images/Screenshot%202023-02-09%20at%2009.58.11.png)
 
 
 ## Installation
