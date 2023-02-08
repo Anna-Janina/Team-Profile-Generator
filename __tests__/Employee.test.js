@@ -16,14 +16,14 @@ test('a name can be added', () => {
 
 // test we can add id 
 test('an idd can be added', () => {
-    const name = 'harold';
+    const name = 'Harold';
     const id = '123456';
     const employee = new Employee(name, id)
     expect(employee.id).toBe(id)
 })
 // test we can add email
 test('an email can be added', () => {
-    const name = 'harold';
+    const name = 'Harold';
     const id = '123456';
     const email = 'harold@harold.com'
     const employee = new Employee(name, id, email)
@@ -31,16 +31,16 @@ test('an email can be added', () => {
 })
 
 // test name method
-test('name method gets name', () => {
-    const test = 'harold';
+test('name method gets getName', () => {
+    const test = 'Harold';
     const employee = new Employee(test)
 
     expect(employee.getName()).toBe(test)
 })
 
 // test id method
-test('id method gets name', () => {
-    const test = 'harold';
+test('id method gets getId', () => {
+    const test = 'Harold';
     const id = '123456';
     const employee = new Employee(test, id)
 
@@ -48,8 +48,8 @@ test('id method gets name', () => {
 })
 
 // test email method
-test('id method gets name', () => {
-    const test = 'harold';
+test('email method gets getEmail', () => {
+    const test = 'Harold';
     const id = '123456';
     const email = 'harold@harold.com'
     const employee = new Employee(test, id, email)
