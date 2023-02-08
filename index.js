@@ -58,17 +58,17 @@ function app() {
             .prompt([
                 {
                     type: 'input',
-                    name: 'name-engineer',
+                    name: 'name',
                     message: `What is the engineer's name?`
                 },
                 {
                     type: 'input',
-                    name: 'id-engineer',
+                    name: 'id',
                     message: `What is the engineer's employee ID?`
                 },
                 {
                     type: 'input',
-                    name: 'email-engineer',
+                    name: 'email',
                     message: `What is the engineer's email address?`
                 },
                 {
@@ -84,62 +84,28 @@ function app() {
             })
     };
 
-    // add engineer function
-    // function addEngineer() {
-    //     inquirer
-    //         .prompt([
-    //             {
-    //                 type: 'input',
-    //                 name: 'name-engineer',
-    //                 message: `What is the engineer's name?`
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'id-engineer',
-    //                 message: `What is the engineer's employee ID?`
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'email-engineer',
-    //                 message: `What is the engineer's email address?`
-    //             },
-    //             {
-    //                 type: 'input',
-    //                 name: 'github',
-    //                 message: `What is the engineer's github name?`
-    //             },
-    //             ])
-    //         .then((answers) => {
-    //             const engineer = new Engineer(
-    //                 answers.name-engineer
-    //             )
-    //             teamMembers.push(engineer)
-    //             createTeam()
-    //         })
-    // };
-
     // add intern function
     function addIntern() {
         inquirer
             .prompt([
                 {
                     type: 'input',
-                    name: 'name-intern',
+                    name: 'name',
                     message: `What is the intern's name?`
                 },
                 {
                     type: 'input',
-                    name: 'id-intern',
+                    name: 'id',
                     message: `What is the intern's employee ID?`
                 },
                 {
                     type: 'input',
-                    name: 'email-intern',
+                    name: 'email',
                     message: `What is the intern's email address?`
                 },
                 {
                     type: 'input',
-                    name: 'school-intern',
+                    name: 'school',
                     message: `What school did the intern go to?`
                 },
                 ])
@@ -149,7 +115,6 @@ function app() {
                 createTeam()
             })
     };
-
 
 
     function createTeam() {
